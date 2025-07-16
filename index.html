@@ -69,8 +69,14 @@
       text-shadow: 1px 1px 4px rgba(217, 93, 189, 0.2);
     }
 
-    .materia {
+    /* Estilos para la lista de materias */
+    .semestre ul {
+      padding-left: 0;
+      margin: 0;
       list-style: none;
+    }
+
+    .materia {
       padding: 0.6em 1em;
       border-radius: 12px;
       margin: 0.4em 0;
@@ -162,112 +168,108 @@
         { clave: "MIP-1330", nombre: "Microbiología", prerrequisitos: ["QUI-1220"] },
         { clave: "SAP-1100", nombre: "Promoción en Salud", prerrequisitos: ["MED-3100"] }
       ],
-  "6. Sexto Semestre Ciclo Básico Médico": [
-  { clave: "CFI-2350", nombre: "Bioquímica II", prerrequisitos: ["CFI-2330", "CFI-2340"] },
-  { clave: "CFI-2360", nombre: "Lab Bioquímica II", prerrequisitos: ["CFI-2330", "CFI-2340"] },
-  { clave: "CMO-3160", nombre: "Anatomía Humana II", prerrequisitos: ["CMO-3140", "CMO-3150"] },
-  { clave: "CMO-3170", nombre: "Lab Anatomía II", prerrequisitos: ["CMO-3140", "CMO-3150"] },
-  { clave: "MIP-1240", nombre: "Parasitología", prerrequisitos: ["MIP-1330", "CMO-3140", "CMO-3150"] },
-  { clave: "MED-4740", nombre: "Semiología Médica" },
-  { clave: "MED-4750", nombre: "Lab Semiología Médica" },
-  { clave: "MED-1340", nombre: "Psicología Médica" },
-  { clave: "SAP-2030", nombre: "Salud Colectiva" },
-  { clave: "SAP-3040", nombre: "Lab Salud Colectiva" },
-  { clave: "CFI-3110", nombre: "Fisiología Humana I" },
-  { clave: "CFI-3120", nombre: "Lab Fisiología Humana I" }
-],
-"7. Séptimo Semestre Ciclo Básico Médico": [
-  { clave: "CFI-3130", nombre: "Fisiología Humana II", prerrequisitos: ["CFI-3110", "CFI-3120"] },
-  { clave: "CFI-3140", nombre: "Lab Fisiología Humana II", prerrequisitos: ["CFI-3110", "CFI-3120"] },
-  { clave: "CFI-1550", nombre: "Fisiopatología I", prerrequisitos: ["CFI-2350", "CFI-2360", "CFI-3110", "CFI-3120"] },
-  { clave: "SAP-1160", nombre: "Epidemiología", prerrequisitos: ["SAP-2030", "SAP-3040"] },
-  { clave: "SAP-1170", nombre: "Lab Epidemiología", prerrequisitos: ["SAP-2030", "SAP-3040"] },
-  { clave: "SAP-2380", nombre: "Gerencia y Políticas de Salud", prerrequisitos: ["SAP-2030", "SAP-3040"] },
-  { clave: "CMO-2280", nombre: "Anatomía Patológica I", prerrequisitos: ["CMO-3160", "CMO-3170"] },
-  { clave: "CMO-2290", nombre: "Lab Anatomía Patológica I", prerrequisitos: ["CMO-3160", "CMO-3170"] },
-  { clave: "CMO-3180", nombre: "Neuroanatomía", prerrequisitos: ["CMO-3160", "CMO-3170"] },
-  { clave: "CMO-3190", nombre: "Lab Neuroanatomía", prerrequisitos: ["CMO-3160", "CMO-3170"] },
-  { clave: "MED-3260", nombre: "Semiología Quirúrgica", prerrequisitos: ["MED-4740", "MED-4750"] },
-  { clave: "MED-3270", nombre: "Lab Semiología Quirúrgica", prerrequisitos: ["MED-4740", "MED-4750"] }
-],
-"8. Octavo Semestre Pre-Internado": [
-  { clave: "CFI-2460", nombre: "Farmacología" },
-  { clave: "CFI-2470", nombre: "Lab Farmacología" },
-  { clave: "CMO-3210", nombre: "Anatomía Patológica II", prerrequisitos: ["CMO-2280", "CMO-2290"] },
-  { clave: "CMO-3220", nombre: "Lab Anatomía Patológica II", prerrequisitos: ["CMO-2280", "CMO-2290"] },
-  { clave: "CFI-1560", nombre: "Fisiopatología II", prerrequisitos: ["CFI-1550"] },
-  { clave: "CFI-1570", nombre: "Lab Fisiopatología II", prerrequisitos: ["CFI-1550"] },
-  { clave: "BAN-2180", nombre: "Inmunología General" },
-  { clave: "MED-1360", nombre: "Sexología Médica" },
-  { clave: "SAP-3350", nombre: "Evolución Sociohistórica de la Medicina" },
-  { clave: "MED-ZYY0", nombre: "Asignatura Optativa" }
-],
-"9. Noveno Semestre Pre-Internado": [
-  { clave: "BAN-3000", nombre: "Imagenología" },
-  { clave: "BAN-3160", nombre: "Hematología Médica" },
-  { clave: "BAN-3170", nombre: "Lab Hematología Médica" },
-  { clave: "CFI-2480", nombre: "Farmacoterapéutica" },
-  { clave: "CFI-2490", nombre: "Lab Farmacoterapéutica" },
-  { clave: "MED-4210", nombre: "Cirugía General" },
-  { clave: "MED-6120", nombre: "Infectología" },
-  { clave: "SAP-2200", nombre: "Bioética y Normativas en Salud" },
-  { clave: "MED-ZZX0", nombre: "Asignatura Optativa" }
-],
-"10. Décimo Semestre Pre-Internado": [
-  { clave: "CFI-4100", nombre: "Endocrinología" },
-  { clave: "CFI-4110", nombre: "Lab Endocrinología" },
-  { clave: "MED-2140", nombre: "Nefrología" },
-  { clave: "MED-2350", nombre: "Psiquiatría" },
-  { clave: "MED-2360", nombre: "Lab Psiquiatría" },
-  { clave: "MED-4160", nombre: "Dermatología" },
-  { clave: "MED-4230", nombre: "Oftalmología" },
-  { clave: "MED-4240", nombre: "Lab Oftalmología" },
-  { clave: "MED-6130", nombre: "Neurología" },
-  { clave: "MED-6140", nombre: "Lab Neurología" },
-  { clave: "MED-6150", nombre: "Cardiología" },
-  { clave: "MED-6160", nombre: "Lab Cardiología" },
-  { clave: "MED-6170", nombre: "Pneumpatología" },
-  { clave: "MED-6180", nombre: "Lab Pneumpatología" },
-  { clave: "MED-6190", nombre: "Gastroenterología" },
-  { clave: "MED-7100", nombre: "Lab Gastroenterología" },
-  { clave: "SAP-3050", nombre: "Medicina Forense" },
-  { clave: "SAP-3080", nombre: "Lab Medicina Forense" }
-],
-"Internado Rotatorio": [
-  { clave: "MED-3440", nombre: "Clínica Pediátrica" },
-  { clave: "MED-3520", nombre: "Clínica Gineco-Obstétrica" },
-  { clave: "MED-7110", nombre: "Medicina Interna" },
-  { clave: "MED-3370", nombre: "Clínica Médico Psiquiátrica" },
-  { clave: "MED-5240", nombre: "Medicina Quirúrgica y Trauma" },
-  { clave: "MED-5230", nombre: "Salud Pública" }
-],
-"Tesis Final": [
-  { clave: "MED-7990", nombre: "Tesis de Grado" }
-],
-"Materias Optativas": [
-  { clave: "MED-2370", nombre: "Introducción a Terapia en Pareja y Familia", prerrequisitos: ["MED-2350", "MED-2360"] },
-  { clave: "FAR-1450", nombre: "Toxicología General", prerrequisitos: ["SAP-1160", "SAP-1170"] },
-  { clave: "SAP-1180", nombre: "Medicina de Urgencias y Desastres", prerrequisitos: ["CMO-3160", "CMO-3170", "CFI-3110", "SAP-2030"] },
-  { clave: "MED-2380", nombre: "Sustancias Psicoactivas y Adicciones", prerrequisitos: ["MED-4740", "MED-4750", "CFI-3130", "CFI-3140"] },
-  { clave: "CFI-3200", nombre: "Genética Clínica" },
-  { clave: "MED-5210", nombre: "Medicina del Deporte", prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
-  { clave: "MED-5220", nombre: "Medicina Física y Rehabilitación", prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
-  { clave: "SAP-1190", nombre: "Salud Ocupacional y Ambiental", prerrequisitos: ["SAP-1160", "SAP-1170", "SAP-2030"] }
-]
+      "6. Sexto Semestre Ciclo Básico Médico": [
+        { clave: "CFI-2350", nombre: "Bioquímica II", prerrequisitos: ["CFI-2330", "CFI-2340"] },
+        { clave: "CFI-2360", nombre: "Lab Bioquímica II", prerrequisitos: ["CFI-2330", "CFI-2340"] },
+        { clave: "CMO-3160", nombre: "Anatomía Humana II", prerrequisitos: ["CMO-3140", "CMO-3150"] },
+        { clave: "CMO-3170", nombre: "Lab Anatomía II", prerrequisitos: ["CMO-3140", "CMO-3150"] },
+        { clave: "MIP-1240", nombre: "Parasitología", prerrequisitos: ["MIP-1330", "CMO-3140", "CMO-3150"] },
+        { clave: "MED-4740", nombre: "Semiología Médica" },
+        { clave: "MED-4750", nombre: "Lab Semiología Médica" },
+        { clave: "MED-1340", nombre: "Psicología Médica" },
+        { clave: "SAP-2030", nombre: "Salud Colectiva" },
+        { clave: "SAP-3040", nombre: "Lab Salud Colectiva" },
+        { clave: "CFI-3110", nombre: "Fisiología Humana I" },
+        { clave: "CFI-3120", nombre: "Lab Fisiología Humana I" }
+      ],
+      "7. Séptimo Semestre Ciclo Básico Médico": [
+        { clave: "CFI-3130", nombre: "Fisiología Humana II", prerrequisitos: ["CFI-3110", "CFI-3120"] },
+        { clave: "CFI-3140", nombre: "Lab Fisiología Humana II", prerrequisitos: ["CFI-3110", "CFI-3120"] },
+        { clave: "CFI-1550", nombre: "Fisiopatología I", prerrequisitos: ["CFI-2350", "CFI-2360", "CFI-3110", "CFI-3120"] },
+        { clave: "SAP-1160", nombre: "Epidemiología", prerrequisitos: ["SAP-2030", "SAP-3040"] },
+        { clave: "SAP-1170", nombre: "Lab Epidemiología", prerrequisitos: ["SAP-2030", "SAP-3040"] },
+        { clave: "SAP-2380", nombre: "Gerencia y Políticas de Salud", prerrequisitos: ["SAP-2030", "SAP-3040"] },
+        { clave: "CMO-2280", nombre: "Anatomía Patológica I", prerrequisitos: ["CMO-3160", "CMO-3170"] },
+        { clave: "CMO-2290", nombre: "Lab Anatomía Patológica I", prerrequisitos: ["CMO-3160", "CMO-3170"] },
+        { clave: "CMO-3180", nombre: "Neuroanatomía", prerrequisitos: ["CMO-3160", "CMO-3170"] },
+        { clave: "CMO-3190", nombre: "Lab Neuroanatomía", prerrequisitos: ["CMO-3160", "CMO-3170"] },
+        { clave: "MED-3260", nombre: "Semiología Quirúrgica", prerrequisitos: ["MED-4740", "MED-4750"] },
+        { clave: "MED-3270", nombre: "Lab Semiología Quirúrgica", prerrequisitos: ["MED-4740", "MED-4750"] }
+      ],
+      "8. Octavo Semestre Pre-Internado": [
+        { clave: "CFI-2460", nombre: "Farmacología" },
+        { clave: "CFI-2470", nombre: "Lab Farmacología" },
+        { clave: "CMO-3210", nombre: "Anatomía Patológica II", prerrequisitos: ["CMO-2280", "CMO-2290"] },
+        { clave: "CMO-3220", nombre: "Lab Anatomía Patológica II", prerrequisitos: ["CMO-2280", "CMO-2290"] },
+        { clave: "CFI-1560", nombre: "Fisiopatología II", prerrequisitos: ["CFI-1550"] },
+        { clave: "CFI-1570", nombre: "Lab Fisiopatología II", prerrequisitos: ["CFI-1550"] },
+        { clave: "BAN-2180", nombre: "Inmunología General" },
+        { clave: "MED-1360", nombre: "Sexología Médica" },
+        { clave: "SAP-3350", nombre: "Evolución Sociohistórica de la Medicina" },
+        { clave: "MED-ZYY0", nombre: "Asignatura Optativa" }
+      ],
+      "9. Noveno Semestre Pre-Internado": [
+        { clave: "BAN-3000", nombre: "Imagenología" },
+        { clave: "BAN-3160", nombre: "Hematología Médica" },
+        { clave: "BAN-3170", nombre: "Lab Hematología Médica" },
+        { clave: "CFI-2480", nombre: "Farmacoterapéutica" },
+        { clave: "CFI-2490", nombre: "Lab Farmacoterapéutica" },
+        { clave: "MED-4210", nombre: "Cirugía General" },
+        { clave: "MED-6120", nombre: "Infectología" },
+        { clave: "SAP-2200", nombre: "Bioética y Normativas en Salud" },
+        { clave: "MED-ZZX0", nombre: "Asignatura Optativa" }
+      ],
+      "10. Décimo Semestre Pre-Internado": [
+        { clave: "CFI-4100", nombre: "Endocrinología" },
+        { clave: "CFI-4110", nombre: "Lab Endocrinología" },
+        { clave: "MED-2140", nombre: "Nefrología" },
+        { clave: "MED-2350", nombre: "Psiquiatría" },
+        { clave: "MED-2360", nombre: "Lab Psiquiatría" },
+        { clave: "MED-4160", nombre: "Dermatología" },
+        { clave: "MED-4230", nombre: "Oftalmología" },
+        { clave: "MED-4240", nombre: "Lab Oftalmología" },
+        { clave: "MED-6130", nombre: "Neurología" },
+        { clave: "MED-6140", nombre: "Lab Neurología" },
+        { clave: "MED-6150", nombre: "Cardiología" },
+        { clave: "MED-6160", nombre: "Lab Cardiología" },
+        { clave: "MED-6170", nombre: "Pneumpatología" },
+        { clave: "MED-6180", nombre: "Lab Pneumpatología" },
+        { clave: "MED-6190", nombre: "Gastroenterología" },
+        { clave: "MED-7100", nombre: "Lab Gastroenterología" },
+        { clave: "SAP-3050", nombre: "Medicina Forense" },
+        { clave: "SAP-3080", nombre: "Lab Medicina Forense" }
+      ],
+      "Internado Rotatorio": [
+        { clave: "MED-3440", nombre: "Clínica Pediátrica" },
+        { clave: "MED-3520", nombre: "Clínica Gineco-Obstétrica" },
+        { clave: "MED-7110", nombre: "Medicina Interna" },
+        { clave: "MED-3370", nombre: "Clínica Médico Psiquiátrica" },
+        { clave: "MED-5240", nombre: "Medicina Quirúrgica y Trauma" },
+        { clave: "MED-5370", nombre: "Medicina de Emergencia" },
+        { clave: "MED-5380", nombre: "Clínica Anestesiología" },
+        { clave: "MED-5390", nombre: "Medicina Intensiva" }
+      ],
+      "Tesis": [
+        { clave: "MED-8180", nombre: "Tesis" }
+      ]
     };
 
-    function puedeTomar(materia, completadas) {
-      if (!materia.prerrequisitos) return true;
-      return materia.prerrequisitos.every(pr => completadas.includes(pr));
-    }
-
-    const STORAGE_KEY = "pensumMedUASD";
-    let completadas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-
+    const STORAGE_KEY = "materiasCompletadasUASD";
     const contenedor = document.getElementById("pensum");
 
+    // Carga materias completadas guardadas en localStorage o vacía
+    let completadas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    // Función para comprobar si una materia puede tomarse (prerrequisitos cumplidos)
+    function puedeTomar(materia, completadas) {
+      if (!materia.prerrequisitos) return true;
+      return materia.prerrequisitos.every(prer => completadas.includes(prer));
+    }
+
+    // Función para mostrar el pensum en la página
     function renderPensum() {
       contenedor.innerHTML = "";
+
       for (const semestre in materias) {
         const divSemestre = document.createElement("div");
         divSemestre.className = "semestre";
@@ -275,6 +277,8 @@
         const h2 = document.createElement("h2");
         h2.textContent = semestre;
         divSemestre.appendChild(h2);
+
+        const ul = document.createElement("ul");
 
         materias[semestre].forEach(materia => {
           const li = document.createElement("li");
@@ -300,9 +304,10 @@
             renderPensum();
           });
 
-          divSemestre.appendChild(li);
+          ul.appendChild(li);
         });
 
+        divSemestre.appendChild(ul);
         contenedor.appendChild(divSemestre);
       }
     }
