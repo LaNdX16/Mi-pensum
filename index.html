@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi pensum de medicina en la UASD – Landy</title>
+
+  <!-- Fuente decorativa -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff3f8; /* fondo rosa claro */
+      margin: 2rem;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8em;
+      color: #5e3a8d;
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 2px 2px 8px rgba(94,58,141,0.5);
+    }
+
+    #pensum {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    #pensum::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    #pensum::-webkit-scrollbar-thumb {
+      background-color: #e8a4d0;
+      border-radius: 6px;
+    }
+
+    #pensum::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .semestre {
+      flex: 0 0 300px;
+      background-color: #ffe9f3; /* rosado pálido */
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px solid #f8c4dc;
+      scroll-snap-align: start;
+      transition: transform 0.2s ease;
+    }
+
+    .semestre:hover {
+      transform: translateY(-4px);
+    }
+
+    .semestre h2 {
+      color: #d95dbd;
+      font-size: 1.3em;
+      margin-bottom: 0.8rem;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(217, 93, 189, 0.2);
+    }
+
+    .materia {
+      list-style: none;
+      padding: 0.6em 1em;
+      border-radius: 12px;
+      margin: 0.4em 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #fce4f1;
+      color: #4a295a;
+      user-select: none;
+      box-shadow: 0 2px 6px rgba(217,93,189,0.15);
+    }
+
+    .materia.pendiente:hover {
+      background-color: #f7bde2;
+    }
+
+    .materia.completada {
+      text-decoration: line-through;
+      background-color: #d1b3f6;
+      color: #4a2a8a;
+    }
+
+    .materia.bloqueada {
+      background-color: #f9d7eb;
+      color: #999;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mi pensum de medicina en la UASD – Landy</h1>
+  <div id="pensum"></div>
+
+  <script>
+    const materias = {
+      "1. Primer Semestre Pre-Médica": [
+        { clave: "BIO-0170", nombre: "Biología Básica" },
+        { clave: "BIO-0180", nombre: "Lab. Biología Básica", prerrequisitos: ["BIO-0170"] },
+        { clave: "DOP-1000", nombre: "Orientación Institucional" },
+        { clave: "FIL-0110", nombre: "Introducción a la Filosofía" },
+        { clave: "FIS-0140", nombre: "Física Básica" },
+        { clave: "LET-0110", nombre: "Lengua Española Básica I" },
+        { clave: "MAT-0140", nombre: "Matemática Básica" },
+        { clave: "QUI-0140", nombre: "Química Básica" },
+        { clave: "SOC-0100", nombre: "Intro a Ciencias Sociales" }
+      ],
+      "2. Segundo Semestre Pre-Médica": [
+        { clave: "CFI-3150", nombre: "Biofísica", prerrequisitos: ["FIS-0140", "BIO-0170", "BIO-0180"] },
+        { clave: "CFI-3160", nombre: "Lab. Biofísica", prerrequisitos: ["CFI-3150"] },
+        { clave: "EFS-0120", nombre: "Educación Física" },
+        { clave: "HIS-0110", nombre: "Historia Social Dominicana" },
+        { clave: "LET-0120", nombre: "Lengua Española Básica II", prerrequisitos: ["LET-0110"] },
+        { clave: "OSI-1510", nombre: "Desarrollo Cognitivo" },
+        { clave: "QUI-1220", nombre: "Química Orgánica", prerrequisitos: ["QUI-0140"] },
+        { clave: "SOC-1470", nombre: "Vida en Comunidad", prerrequisitos: ["SOC-0100"] }
+      ],
+      "3. Tercer Semestre Pre-Médica": [
+        { clave: "CMO-1020", nombre: "Estructura y Sist. Anatómicos", prerrequisitos: ["BIO-0170", "BIO-0180"] },
+        { clave: "CMO-1030", nombre: "Lab Estruct y Sist. Anatómicos", prerrequisitos: ["BIO-0170", "BIO-0180"] },
+        { clave: "FIL-1270", nombre: "Fund. Ética General", prerrequisitos: ["FIL-0110"] },
+        { clave: "HIS-1700", nombre: "Antropología Aplicada", prerrequisitos: ["SOC-0100"] },
+        { clave: "HIS-2370", nombre: "Historia de la Cultura Universal", prerrequisitos: ["HIS-0110"] },
+        { clave: "IDI-1200", nombre: "Inglés Técnico en Salud I", prerrequisitos: ["LET-0120"] },
+        { clave: "INF-1030", nombre: "Introducción a la Informática", prerrequisitos: ["MAT-0140"] },
+        { clave: "SAP-2090", nombre: "Bases Análisis Biométrico", prerrequisitos: ["MAT-0140"] }
+      ],
+      "4. Cuarto Semestre Pre-Médica": [
+        { clave: "CFI-0160", nombre: "Fisiología Celular", prerrequisitos: ["BIO-0170", "BIO-0180", "QUI-1220", "CFI-3150", "CFI-3160"] },
+        { clave: "CMO-0300", nombre: "Bases Histológicas del Organismo", prerrequisitos: ["BIO-0170", "BIO-0180"] },
+        { clave: "CMO-0340", nombre: "Lab Bases Histológicas", prerrequisitos: ["BIO-0170", "BIO-0180"] },
+        { clave: "IDI-1270", nombre: "Inglés Técnico en Salud II", prerrequisitos: ["IDI-1200"] },
+        { clave: "MED-0330", nombre: "Salud y Conducta Humana", prerrequisitos: ["SOC-0100"] },
+        { clave: "MED-0340", nombre: "Lab Salud y Conducta Humana", prerrequisitos: ["SOC-0100"] },
+        { clave: "SAP-1050", nombre: "Intro a la Metod. de Investigación", prerrequisitos: ["SOC-0100"] },
+        { clave: "SAP-1150", nombre: "Soporte Vital Básico", prerrequisitos: ["CMO-1020", "CMO-1030"] },
+        { clave: "SAP-2080", nombre: "Tecnología de la Información en Salud", prerrequisitos: ["INF-1030"] }
+      ],
+      "5. Quinto Semestre Ciclo Básico Médico": [
+        { clave: "CFI-1230", nombre: "Genética Médica", prerrequisitos: ["CFI-0160", "QUI-1220"] },
+        { clave: "CFI-1240", nombre: "Lab Genética Médica", prerrequisitos: ["CFI-1230"] },
+        { clave: "CFI-2330", nombre: "Bioquímica I", prerrequisitos: ["BIO-0170", "BIO-0180", "QUI-1220"] },
+        { clave: "CFI-2340", nombre: "Lab Bioquímica I", prerrequisitos: ["CFI-2330"] },
+        { clave: "CMO-1420", nombre: "Embriología" },
+        { clave: "CMO-2320", nombre: "Histología General" },
+        { clave: "CMO-2330", nombre: "Lab Histología General", prerrequisitos: ["CMO-2320"] },
+        { clave: "CMO-3140", nombre: "Anatomía Humana I" },
+        { clave: "CMO-3150", nombre: "Lab Anatomía I", prerrequisitos: ["CMO-3140"] },
+        { clave: "MED-3100", nombre: "Introducción a la Clínica" },
+        { clave: "MIP-1330", nombre: "Microbiología", prerrequisitos: ["QUI-1220"] },
+        { clave: "SAP-1100", nombre: "Promoción en Salud", prerrequisitos: ["MED-3100"] }
+      ]
+    };
+
+    function puedeTomar(materia, completadas) {
+      if (!materia.prerrequisitos) return true;
+      return materia.prerrequisitos.every(pr => completadas.includes(pr));
+    }
+
+    const STORAGE_KEY = "pensumMedUASD";
+    let completadas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    const contenedor = document.getElementById("pensum");
+
+    function renderPensum() {
+      contenedor.innerHTML = "";
+      for (const semestre in materias) {
+        const divSemestre = document.createElement("div");
+        divSemestre.className = "semestre";
+
+        const h2 = document.createElement("h2");
+        h2.textContent = semestre;
+        divSemestre.appendChild(h2);
+
+        materias[semestre].forEach(materia => {
+          const li = document.createElement("li");
+          li.textContent = `${materia.clave} - ${materia.nombre}`;
+          li.className = "materia";
+
+          if (completadas.includes(materia.clave)) {
+            li.classList.add("completada");
+          } else if (!puedeTomar(materia, completadas)) {
+            li.classList.add("bloqueada");
+          } else {
+            li.classList.add("pendiente");
+          }
+
+          li.addEventListener("click", () => {
+            if (li.classList.contains("bloqueada")) return;
+            if (li.classList.contains("completada")) {
+              completadas = completadas.filter(c => c !== materia.clave);
+            } else {
+              completadas.push(materia.clave);
+            }
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(completadas));
+            renderPensum();
+          });
+
+          divSemestre.appendChild(li);
+        });
+
+        contenedor.appendChild(divSemestre);
+      }
+    }
+
+    renderPensum();
+  </script>
+
+</body>
+</html>
