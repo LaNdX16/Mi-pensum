@@ -293,50 +293,44 @@
 "Tesis de Grado": [
   { clave: "MED-7990", nombre: "Tesis de Grado", cr: 8 }
 ]
-  };
-    const optativas = {
+
+// ✅ Optativas oficiales
+const optativas = {
   "Semestre 4 MED": [
-    { clave: "MED-2370", nombre: "Intervención Terapia en Pareja y Familia", cr: 3, prerrequisitos: ["MED-2350", "MED-2360"] },
-    { clave: "FAR-1450", nombre: "Toxicología General", cr: 3, prerrequisitos: ["SAP-1160", "SAP-1170"] },
-    { clave: "SAP-1180", nombre: "Medicina de Urgencias y Desastres", cr: 2, prerrequisitos: ["CMO-3160", "CMO-3170", "CFI-3110", "SAP-2030"] }
+    { clave: "MED-2370", nombre: "Intervención Terapia en Pareja y Familia", cr: 3 },
+    { clave: "FAR-1450", nombre: "Toxicología General", cr: 3 },
+    { clave: "SAP-1180", nombre: "Medicina de Urgencias y Desastres", cr: 2 }
   ],
   "Semestre 5 PRE-INT": [
-    { clave: "MED-2380", nombre: "Sustancias Psicoactivas y Adicción", cr: 3, prerrequisitos: ["MED-4740", "MED-4750", "CFI-3130", "CFI-3140"] },
+    { clave: "MED-2380", nombre: "Sustancias Psicoactivas y Adicción", cr: 3 },
     { clave: "CFI-3200", nombre: "Genética Clínica", cr: 3 }
   ],
   "Semestre 7 PRE-INT": [
-    { clave: "MED-5210", nombre: "Medicina del Deporte", cr: 3, prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
-    { clave: "MED-5220", nombre: "Medicina Física y Rehabilitación", cr: 3, prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
-    { clave: "SAP-1190", nombre: "Salud Ocupacional y Ambiental", cr: 3, prerrequisitos: ["SAP-1160", "SAP-1170", "SAP-2030"] }
+    { clave: "MED-5210", nombre: "Medicina del Deporte", cr: 3 },
+    { clave: "MED-5220", nombre: "Medicina Física y Rehabilitación", cr: 3 },
+    { clave: "SAP-1190", nombre: "Salud Ocupacional y Ambiental", cr: 3 }
   ]
 };
 
 const pensumDiv = document.getElementById('pensum');
 const contadorCreditos = document.getElementById('contadorCreditos');
 
-// Función para saber si una materia tiene prerrequisitos no cumplidos
 function bloqueada(materia, completadas) {
   if (!materia.prerrequisitos) return false;
   return materia.prerrequisitos.some(pre => !completadas.has(pre));
 }
 
-// Variables para manejar materias completadas
 let materiasCompletadas = new Set();
 
-// Cargar materias completadas del localStorage
 function cargarCompletadas() {
   const data = localStorage.getItem('medicina_materias_completadas');
-  if (data) {
-    materiasCompletadas = new Set(JSON.parse(data));
-  }
+  if (data) materiasCompletadas = new Set(JSON.parse(data));
 }
 
-// Guardar materias completadas en localStorage
 function guardarCompletadas() {
   localStorage.setItem('medicina_materias_completadas', JSON.stringify([...materiasCompletadas]));
 }
 
-// Actualizar contador de créditos completados
 function actualizarContador() {
   let totalCreditos = 0;
   materiasCompletadas.forEach(clave => {
@@ -352,7 +346,6 @@ function actualizarContador() {
   contadorCreditos.textContent = `Créditos completados: ${totalCreditos}`;
 }
 
-// Función para crear elementos de materias
 function crearMateriaElemento(materia, completadas) {
   const li = document.createElement('li');
   li.classList.add('materia');
@@ -387,11 +380,9 @@ function crearMateriaElemento(materia, completadas) {
   return li;
 }
 
-// Crear visual del pensum con materias y optativas
 function renderizarPensum() {
   pensumDiv.innerHTML = '';
 
-  // Render materias normales
   for (const semestre in materias) {
     const divSemestre = document.createElement('div');
     divSemestre.classList.add('semestre');
@@ -411,7 +402,6 @@ function renderizarPensum() {
     divSemestre.appendChild(ul);
     pensumDiv.appendChild(divSemestre);
 
-    // Si hay optativas para este semestre, también las agregamos aquí
     if (optativas[semestre]) {
       const tituloOptativas = document.createElement('div');
       tituloOptativas.classList.add('optativas-title');
@@ -430,7 +420,11 @@ function renderizarPensum() {
     }
   }
 }
-console.log("Entrando a renderizarPensum...");
+
 cargarCompletadas();
 renderizarPensum();
 actualizarContador();
+</script>
+
+</body>
+</html>
