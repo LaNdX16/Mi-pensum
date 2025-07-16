@@ -9,12 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff3f8; /* fondo rosa claro */
-      margin: 2rem;
-      overflow-x: hidden;
-    }
+   body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffd1e8; /* rosa más intenso */
+  margin: 2rem;
+  overflow-x: hidden;
+   }
 
     h1 {
       text-align: center;
@@ -22,15 +22,15 @@
       color: #5e3a8d;
       margin-bottom: 2rem;
       font-family: 'Playfair Display', serif;
-      text-shadow: 2px 2px 8px rgba(94,58,141,0.5);
+      text-shadow: 2px 2px 10px rgba(94, 58, 141, 0.7);
     }
 
     #pensum {
-      display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
     }
 
     #pensum::-webkit-scrollbar {
@@ -51,7 +51,7 @@
       background-color: #ffe9f3; /* rosado pálido */
       border-radius: 12px;
       padding: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       border: 2px solid #f8c4dc;
       scroll-snap-align: start;
       transition: transform 0.2s ease;
@@ -76,10 +76,10 @@
       margin: 0.4em 0;
       cursor: pointer;
       transition: all 0.3s ease;
-      background-color: #fce4f1;
+      background-color: #fcbde5;
       color: #4a295a;
       user-select: none;
-      box-shadow: 0 2px 6px rgba(217,93,189,0.15);
+      box-shadow: 0 4px 10px rgba(217, 93, 189, 0.3);
     }
 
     .materia.pendiente:hover {
