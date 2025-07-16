@@ -3,91 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi Pensum de Medicina en la UASD – Landy</title>
+  <title>Mi pensum de medicina en la UASD – Landy</title>
 
-  <!-- Fuente decorativa -->
+  <!-- Fuente elegante -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #ffb3d9;
+      background-color: #ffd6e8; /* Fondo rosa elegante */
       margin: 2rem;
       overflow-x: hidden;
     }
+
     h1 {
-  text-align: center;
-  font-size: 2.8em;
-  color: #4a1568; /* morado oscuro elegante */
-  margin-bottom: 2rem;
-  font-family: 'Playfair Display', serif;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-}
+      text-align: center;
+      font-size: 2.8em;
+      color: #4a1568; /* Morado intenso */
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
     #pensum {
       display: flex;
       gap: 1.5rem;
       overflow-x: auto;
       padding-bottom: 1rem;
-      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth; /* Scroll suave */
     }
+
     #pensum::-webkit-scrollbar {
       height: 8px;
     }
+
     #pensum::-webkit-scrollbar-thumb {
       background-color: #e8a4d0;
       border-radius: 6px;
     }
+
     #pensum::-webkit-scrollbar-track {
       background: transparent;
     }
-   .semestre {
-  flex: 0 0 300px;
-  background-color: #f27ea9; /* fucsia suave, elegante */
-  border-radius: 18px;
-  padding: 1rem;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2); /* sombra fija burbuja */
-  border: none;
-  scroll-snap-align: start;
-}
 
-.semestre:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
-
-}
-   .semestre h2 {
-  color: #ffffff; /* blanco para contraste */
-  font-size: 1.4em;
-  margin-bottom: 0.8rem;
-  text-align: center;
-  font-family: 'Playfair Display', serif; /* elegante */
-  letter-spacing: 1px;
-}
+    .semestre {
+      flex: 0 0 300px;
+      background-color: #f27ea9; /* Rosa fucsia suave */
+      border-radius: 18px;
+      padding: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Efecto burbuja */
+      scroll-snap-align: start;
     }
+
+    .semestre h2 {
+      color: #ffffff;
+      font-size: 1.4em;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.8rem;
+    }
+
     .materia {
-      list-style: none;
+      background-color: #fcd4e6; /* Rosa claro */
+      color: #4a295a;
       padding: 0.6em 1em;
       border-radius: 12px;
       margin: 0.4em 0;
       cursor: pointer;
-      transition: all 0.3s ease;
-      background-color: #fcbde5;
-      color: #4a295a;
-      user-select: none;
-      box-shadow: 0 4px 10px rgba(217, 93, 189, 0.3);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
     }
+
     .materia.pendiente:hover {
-      background-color: #f9a6d8;
+      background-color: #f7bde2;
     }
+
     .materia.completada {
-  text-decoration: line-through;
-  background-color: #a16cd8; /* morado intenso */
-  color: #fff; /* texto blanco */
-  position: relative;
-  
+      text-decoration: line-through;
+      background-color: #a16cd8; /* Morado intenso */
+      color: #fff;
     }
+
     .materia.bloqueada {
-      background-color: #f9d7eb;
+      background-color: #f2bcd6;
       color: #999;
       cursor: not-allowed;
     }
@@ -147,9 +145,7 @@
         { clave: "CFI-1240", nombre: "Lab Genética Médica", prerrequisitos: ["CFI-1230"] },
         { clave: "CFI-2330", nombre: "Bioquímica I", prerrequisitos: ["BIO-0170", "BIO-0180", "QUI-1220"] },
         { clave: "CFI-2340", nombre: "Lab Bioquímica I", prerrequisitos: ["CFI-2330"] },
-        { clave: "CMO-1420", nombre: "Embriología" },
-        { clave: "CMO-2320", nombre: "Histología General" },
-        { clave: "CMO-2330", nombre: "Lab Histología General", prerrequisitos: ["CMO-2320"] },
+        { clave: "CMO-1420", nombre: "stología General", prerrequisitos: ["CMO-2320"] },
         { clave: "CMO-3140", nombre: "Anatomía Humana I" },
         { clave: "CMO-3150", nombre: "Lab Anatomía I", prerrequisitos: ["CMO-3140"] },
         { clave: "MED-3100", nombre: "Introducción a la Clínica" },
@@ -247,16 +243,16 @@
         { clave: "MED-5210", nombre: "Medicina del Deporte", prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
         { clave: "MED-5220", nombre: "Medicina Física y Rehabilitación", prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
         { clave: "SAP-1190", nombre: "Salud Ocupacional y Ambiental", prerrequisitos: ["SAP-1160", "SAP-1170", "SAP-2030"] }
-      ]
+         
     };
-
-    function puedeTomar(materia, completadas) {
-      if (!materia.prerrequisitos) return true;
-      return materia.prerrequisitos.every(pr => completadas.includes(pr));
-    }
 
     const STORAGE_KEY = "pensumMedUASD";
     let completadas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    function puedeTomar(materia) {
+      if (!materia.prerrequisitos) return true;
+      return materia.prerrequisitos.every(pr => completadas.includes(pr));
+    }
 
     const contenedor = document.getElementById("pensum");
 
@@ -277,7 +273,7 @@
 
           if (completadas.includes(materia.clave)) {
             li.classList.add("completada");
-          } else if (!puedeTomar(materia, completadas)) {
+          } else if (!puedeTomar(materia)) {
             li.classList.add("bloqueada");
           } else {
             li.classList.add("pendiente");
