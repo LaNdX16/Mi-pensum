@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mi pensum de Medicina UASD</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #ffe4f1;
+        margin: 20px;
+    }
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #6a0dad;
+        margin-bottom: 20px;
+    }
+    #pensum {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    .semestre {
+        background-color: #f8a6cd;
+        border-radius: 12px;
+        padding: 15px;
+        width: 280px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        flex: 0 0 auto;
+    }
+    .semestre h2 {
+        text-align: center;
+        font-size: 1.3rem;
+        color: #6a0dad;
+        margin-bottom: 10px;
+    }
+    .semestre ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .materia {
+        background-color: #fcbde5;
+        padding: 8px 10px;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .materia:hover {
+        background-color: #f7aede;
+    }
+    .completada {
+        background-color: #d1b3f6 !important;
+        text-decoration: line-through;
+        color: #4a2a8a;
+    }
+    .bloqueada {
+        background-color: #f2f2f2 !important;
+        color: #aaa;
+        cursor: not-allowed;
+    }
+</style>
+</head>
+<body>
+
+<h1>Mi pensum de Medicina UASD</h1>
+<div id="pensum"></div>
+
+<script>
+const materias = {
+    "1. Primer Semestre": [
+        { clave: "BIO-0170", nombre: "Biología Básica" },
+        { clave: "BIO-0180", nombre: "Lab. Biología Básica", prerrequisitos: ["BIO-0170"] },
+        { clave: "LET-0110", nombre: "Lengua Española I" }
+    ],
+    "2. Segundo Semestre": [
+        { clave: "CFI-3150", nombre: "Biofísica", prerrequisitos: ["BIO-0170"] },
+        { clave: "LET-0120", nombre: "Lengua Española II", prerrequisitos: ["LET-0110"] }
+    ]
+};
+
+const STORAGE_KEY = "materiasCompletadas";
+let completadas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+const contenedor = document.getElementById("pensum");
+
+function puedeTomar(materia) {
+    if (!materia.prerrequisitos) return true;
+    return materia.prerrequisitos.every(pr => completadas.includes(pr));
+}
+
+function renderPensum() {
+    contenedor.innerHTML = "";
+    for (const semestre in materias) {
+        const divSem = document.createElement("div");
+        divSem.className = "semestre";
+        divSem.innerHTML = `<h2>${semestre}</h2>`;
+        
+        const ul = document.createElement("ul");
+        materias[semestre].forEach(materia => {
+            const li = document.createElement("li");
+            li.textContent = `${materia.clave} - ${materia.nombre}`;
+            li.className = "materia";
+
+            if (completadas.includes(materia.clave)) {
+                li.classList.add("completada");
+            } else if (!puedeTomar(materia)) {
+                li.classList.add("bloqueada");
+            }
+
+            li.addEventListener("click", () => {
+                if (li.classList.contains("bloqueada")) return;
+                if (li.classList.contains("completada")) {
+                    completadas = completadas.filter(c => c !== materia.clave);
+                } else {
+                    completadas.push(materia.clave);
+                }
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(completadas));
+                renderPensum();
+            });
+
+            ul.appendChild(li);
+        });
+        divSem.appendChild(ul);
+        contenedor.appendChild(divSem);
+    }
+}
+
+renderPensum();
+</script>
+
+</body>
+</html>
