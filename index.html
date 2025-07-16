@@ -292,150 +292,145 @@
 
 "Tesis de Grado": [
   { clave: "MED-7990", nombre: "Tesis de Grado", cr: 8 }
-],
-  "Optativas": [
-    "Semestre 4 MED": [
-      { clave: "MED-2370", nombre: "Intervención Terapia en Pareja y Familia", cr: 3, prerrequisitos: ["MED-2350", "MED-2360"] },
-      { clave: "FAR-1450", nombre: "Toxicología General", cr: 3, prerrequisitos: ["SAP-1160", "SAP-1170"] },
-      { clave: "SAP-1180", nombre: "Medicina de Urgencias y Desastres", cr: 2, prerrequisitos: ["CMO-3160", "CMO-3170", "CFI-3110", "SAP-2030"] }
-    ], 
-    "Optativas": [
-    "Semestre 5 PRE-INT": [
-      { clave: "MED-2380", nombre: "Sustancias Psicoactivas y Adicción", cr: 3, prerrequisitos: ["MED-4740", "MED-4750", "CFI-3130", "CFI-3140"] },
-      { clave: "CFI-3200", nombre: "Genética Clínica", cr: 3 }
-    ],
-    "Optativas": [
-    "Semestre 7 PRE-INT": [
-      { clave: "MED-5210", nombre: "Medicina del Deporte", cr: 3, prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
-      { clave: "MED-5220", nombre: "Medicina Física y Rehabilitación", cr: 3, prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
-      { clave: "SAP-1190", nombre: "Salud Ocupacional y Ambiental", cr: 3, prerrequisitos: ["SAP-1160", "SAP-1170", "SAP-2030"] }
-    ]
+]
   };
+    const optativas = {
+  "Semestre 4 MED": [
+    { clave: "MED-2370", nombre: "Intervención Terapia en Pareja y Familia", cr: 3, prerrequisitos: ["MED-2350", "MED-2360"] },
+    { clave: "FAR-1450", nombre: "Toxicología General", cr: 3, prerrequisitos: ["SAP-1160", "SAP-1170"] },
+    { clave: "SAP-1180", nombre: "Medicina de Urgencias y Desastres", cr: 2, prerrequisitos: ["CMO-3160", "CMO-3170", "CFI-3110", "SAP-2030"] }
+  ],
+  "Semestre 5 PRE-INT": [
+    { clave: "MED-2380", nombre: "Sustancias Psicoactivas y Adicción", cr: 3, prerrequisitos: ["MED-4740", "MED-4750", "CFI-3130", "CFI-3140"] },
+    { clave: "CFI-3200", nombre: "Genética Clínica", cr: 3 }
+  ],
+  "Semestre 7 PRE-INT": [
+    { clave: "MED-5210", nombre: "Medicina del Deporte", cr: 3, prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
+    { clave: "MED-5220", nombre: "Medicina Física y Rehabilitación", cr: 3, prerrequisitos: ["BAN-3000", "MED-4260", "MED-4270"] },
+    { clave: "SAP-1190", nombre: "Salud Ocupacional y Ambiental", cr: 3, prerrequisitos: ["SAP-1160", "SAP-1170", "SAP-2030"] }
+  ]
+};
 
-  const pensumDiv = document.getElementById('pensum');
-  const contadorCreditos = document.getElementById('contadorCreditos');
+const pensumDiv = document.getElementById('pensum');
+const contadorCreditos = document.getElementById('contadorCreditos');
 
-  // Función para saber si una materia tiene prerrequisitos no cumplidos
-  function bloqueada(materia, completadas) {
-    if (!materia.prerrequisitos) return false;
-    return materia.prerrequisitos.some(pre => !completadas.has(pre));
+// Función para saber si una materia tiene prerrequisitos no cumplidos
+function bloqueada(materia, completadas) {
+  if (!materia.prerrequisitos) return false;
+  return materia.prerrequisitos.some(pre => !completadas.has(pre));
+}
+
+// Variables para manejar materias completadas
+let materiasCompletadas = new Set();
+
+// Cargar materias completadas del localStorage
+function cargarCompletadas() {
+  const data = localStorage.getItem('medicina_materias_completadas');
+  if (data) {
+    materiasCompletadas = new Set(JSON.parse(data));
   }
+}
 
-  // Variables para manejar materias completadas
-  let materiasCompletadas = new Set();
+// Guardar materias completadas en localStorage
+function guardarCompletadas() {
+  localStorage.setItem('medicina_materias_completadas', JSON.stringify([...materiasCompletadas]));
+}
 
-  // Cargar materias completadas del localStorage
-  function cargarCompletadas() {
-    const data = localStorage.getItem('medicina_materias_completadas');
-    if (data) {
-      materiasCompletadas = new Set(JSON.parse(data));
+// Actualizar contador de créditos completados
+function actualizarContador() {
+  let totalCreditos = 0;
+  materiasCompletadas.forEach(clave => {
+    for (const sem in materias) {
+      const mat = materias[sem].find(m => m.clave === clave);
+      if (mat) totalCreditos += mat.cr;
     }
+    for (const semOpt in optativas) {
+      const matOpt = optativas[semOpt].find(m => m.clave === clave);
+      if (matOpt) totalCreditos += matOpt.cr;
+    }
+  });
+  contadorCreditos.textContent = `Créditos completados: ${totalCreditos}`;
+}
+
+// Función para crear elementos de materias
+function crearMateriaElemento(materia, completadas) {
+  const li = document.createElement('li');
+  li.classList.add('materia');
+
+  const estaBloqueada = bloqueada(materia, completadas);
+  if (estaBloqueada) {
+    li.classList.add('bloqueada');
+  } else if (completadas.has(materia.clave)) {
+    li.classList.add('completada');
+  } else {
+    li.classList.add('pendiente');
   }
 
-  // Guardar materias completadas en localStorage
-  function guardarCompletadas() {
-    localStorage.setItem('medicina_materias_completadas', JSON.stringify([...materiasCompletadas]));
-  }
+  li.textContent = `${materia.clave} - ${materia.nombre} (${materia.cr} CR)`;
 
-  // Actualizar contador de créditos completados
-  function actualizarContador() {
-    let totalCreditos = 0;
-    materiasCompletadas.forEach(clave => {
-      for (const sem in materias) {
-        const mat = materias[sem].find(m => m.clave === clave);
-        if (mat) totalCreditos += mat.cr;
+  if (!estaBloqueada) {
+    li.addEventListener('click', () => {
+      if (completadas.has(materia.clave)) {
+        completadas.delete(materia.clave);
+        li.classList.remove('completada');
+        li.classList.add('pendiente');
+      } else {
+        completadas.add(materia.clave);
+        li.classList.remove('pendiente');
+        li.classList.add('completada');
       }
-      for (const semOpt in optativas) {
-        const matOpt = optativas[semOpt].find(m => m.clave === clave);
-        if (matOpt) totalCreditos += matOpt.cr;
-      }
+      guardarCompletadas();
+      actualizarContador();
     });
-    contadorCreditos.textContent = `Créditos completados: ${totalCreditos}`;
   }
 
-  // Función para crear elementos de materias
-  function crearMateriaElemento(materia, completadas) {
-    const li = document.createElement('li');
-    li.classList.add('materia');
+  return li;
+}
 
-    const estaBloqueada = bloqueada(materia, completadas);
-    if (estaBloqueada) {
-      li.classList.add('bloqueada');
-    } else if (completadas.has(materia.clave)) {
-      li.classList.add('completada');
-    } else {
-      li.classList.add('pendiente');
-    }
+// Crear visual del pensum con materias y optativas
+function renderizarPensum() {
+  pensumDiv.innerHTML = '';
 
-    li.textContent = `${materia.clave} - ${materia.nombre} (${materia.cr} CR)`;
+  // Render materias normales
+  for (const semestre in materias) {
+    const divSemestre = document.createElement('div');
+    divSemestre.classList.add('semestre');
 
-    if (!estaBloqueada) {
-      li.addEventListener('click', () => {
-        if (completadas.has(materia.clave)) {
-          completadas.delete(materia.clave);
-          li.classList.remove('completada');
-          li.classList.add('pendiente');
-        } else {
-          completadas.add(materia.clave);
-          li.classList.remove('pendiente');
-          li.classList.add('completada');
-        }
-        guardarCompletadas();
-        actualizarContador();
-      });
-    }
+    const h2 = document.createElement('h2');
+    h2.textContent = semestre;
+    divSemestre.appendChild(h2);
 
-    return li;
-  }
+    const ul = document.createElement('ul');
+    ul.style.paddingLeft = '0';
+    ul.style.margin = '0';
 
-  // Crear visual del pensum con materias y optativas
-  function renderizarPensum() {
-    pensumDiv.innerHTML = '';
+    materias[semestre].forEach(materia => {
+      ul.appendChild(crearMateriaElemento(materia, materiasCompletadas));
+    });
 
-    // Render materias normales
-    for (const semestre in materias) {
-      const divSemestre = document.createElement('div');
-      divSemestre.classList.add('semestre');
+    divSemestre.appendChild(ul);
+    pensumDiv.appendChild(divSemestre);
 
-      const h2 = document.createElement('h2');
-      h2.textContent = semestre;
-      divSemestre.appendChild(h2);
+    // Si hay optativas para este semestre, también las agregamos aquí
+    if (optativas[semestre]) {
+      const tituloOptativas = document.createElement('div');
+      tituloOptativas.classList.add('optativas-title');
+      tituloOptativas.textContent = 'Optativas';
+      divSemestre.appendChild(tituloOptativas);
 
-      const ul = document.createElement('ul');
-      ul.style.paddingLeft = '0';
-      ul.style.margin = '0';
+      const ulOpt = document.createElement('ul');
+      ulOpt.style.paddingLeft = '0';
+      ulOpt.style.margin = '0';
 
-      materias[semestre].forEach(materia => {
-        ul.appendChild(crearMateriaElemento(materia, materiasCompletadas));
+      optativas[semestre].forEach(optativa => {
+        ulOpt.appendChild(crearMateriaElemento(optativa, materiasCompletadas));
       });
 
-      divSemestre.appendChild(ul);
-      pensumDiv.appendChild(divSemestre);
-
-      // Si hay optativas para este semestre, también las agregamos aquí
-      if (optativas[semestre]) {
-        const tituloOptativas = document.createElement('div');
-        tituloOptativas.classList.add('optativas-title');
-        tituloOptativas.textContent = 'Optativas';
-        divSemestre.appendChild(tituloOptativas);
-
-        const ulOpt = document.createElement('ul');
-        ulOpt.style.paddingLeft = '0';
-        ulOpt.style.margin = '0';
-
-        optativas[semestre].forEach(optativa => {
-          ulOpt.appendChild(crearMateriaElemento(optativa, materiasCompletadas));
-        });
-
-        divSemestre.appendChild(ulOpt);
-      }
+      divSemestre.appendChild(ulOpt);
     }
   }
+}
 
-  cargarCompletadas();
-  renderizarPensum();
-  actualizarContador();
-</script>
-
-</body>
-</html>
+cargarCompletadas();
+renderizarPensum();
+actualizarContador();
