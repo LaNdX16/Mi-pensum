@@ -41,18 +41,21 @@
       background: transparent;
     }
     .semestre {
-      flex: 0 0 300px;
-      background: linear-gradient(145deg, #f48fb1, #f06292);
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      border: 2px solid #f8c4dc;
-      scroll-snap-align: start;
-      transition: transform 0.2s ease;
-    }
-    .semestre:hover {
-      transform: translateY(-4px);
-    }
+  flex: 0 0 300px;
+  background-color: #f8a6cd; /* rosa elegante */
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* sombra tipo burbuja */
+  border: none;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.semestre:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+
+}
     .semestre h2 {
       color: #d95dbd;
       font-size: 1.3em;
@@ -80,23 +83,6 @@
   background-color: #a16cd8; /* morado intenso */
   color: #fff; /* texto blanco */
   position: relative;
-  overflow: hidden;
-}
-
-.materia.completada::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: skewX(-30deg);
-  transition: left 0.5s ease;
-}
-
-.materia.completada:hover::after {
-  left: 100%;
   
     }
     .materia.bloqueada {
