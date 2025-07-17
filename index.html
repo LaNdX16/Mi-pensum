@@ -86,18 +86,21 @@
     text-shadow: 1px 1px 4px rgba(217, 93, 189, 0.2);
   }
 
-  .materia {
-    list-style: none;
-    padding: 0.6em 1em;
-    border-radius: 12px;
-    margin: 0.4em 0;
-    cursor: pointer;
-    background-color: #fcbde5;
-    color: #4a295a;
-    user-select: none;
-    box-shadow: 0 4px 10px rgba(217, 93, 189, 0.3);
-    transition: background-color 0.3s ease;
-  }
+ .materia {
+  list-style: none;
+  padding: 0.6em 1em;
+  border-radius: 12px;
+  margin: 0.4em 0;
+  cursor: pointer;
+  background-color: #fcbde5;
+  color: #4a295a;
+  user-select: none;
+  box-shadow: 
+    0 8px 15px rgba(217, 93, 189, 0.35), /* sombra principal, más grande y suave */
+    0 4px 8px rgba(217, 93, 189, 0.25),  /* sombra secundaria */
+    inset 0 -3px 5px rgba(255, 255, 255, 0.3); /* brillo interior para volumen */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
   .materia.pendiente:hover {
     background-color: #f7bde2;
