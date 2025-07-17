@@ -311,7 +311,7 @@
   }
 
   // Actualizar contador de créditos completados
- function actualizarCreditos() {
+  actualizarCreditos();
   let total = 0;
   document.querySelectorAll(".materia.completada").forEach((el) => {
     const creditos = parseInt(el.dataset.creditos) || 0;
