@@ -124,48 +124,48 @@
 <div id="pensum"></div>
 
 <script>
-  const materias = {
-    "1. Primer Semestre Pre-Médica": [
-      { clave: "BIO-0170", nombre: "Biología Básica", creditos: 4 },
-      { clave: "BIO-0180", nombre: "Lab. Biología Básica", creditos: 1, prerrequisitos: ["BIO-0170"] },
-      { clave: "DOP-1000", nombre: "Orientación Institucional", creditos: 1 },
-      { clave: "FIL-0110", nombre: "Introducción a la Filosofía", creditos: 3 },
-      { clave: "FIS-0140", nombre: "Física Básica", creditos: 4 },
-      { clave: "LET-0110", nombre: "Lengua Española Básica I", creditos: 3 },
-      { clave: "MAT-0140", nombre: "Matemática Básica", creditos: 4 },
-      { clave: "QUI-0140", nombre: "Química Básica", creditos: 4 },
-      { clave: "SOC-0100", nombre: "Intro a Ciencias Sociales", creditos: 3 }
-    ],
-    "2. Segundo Semestre Pre-Médica": [
-      { clave: "CFI-3150", nombre: "Biofísica", creditos: 4, prerrequisitos: ["FIS-0140", "BIO-0170", "BIO-0180"] },
-      { clave: "CFI-3160", nombre: "Lab. Biofísica", creditos: 1, prerrequisitos: ["CFI-3150"] },
-      { clave: "EFS-0120", nombre: "Educación Física", creditos: 1 },
-      { clave: "HIS-0110", nombre: "Historia Social Dominicana", creditos: 3 },
-      { clave: "LET-0120", nombre: "Lengua Española Básica II", creditos: 3, prerrequisitos: ["LET-0110"] },
-      { clave: "OSI-1510", nombre: "Desarrollo Cognitivo", creditos: 3 },
-      { clave: "QUI-1220", nombre: "Química Orgánica", creditos: 4, prerrequisitos: ["QUI-0140"] },
-      { clave: "SOC-1470", nombre: "Vida en Comunidad", creditos: 3, prerrequisitos: ["SOC-0100"] }
-    ],
-    "3. Tercer Semestre Pre-Médica": [
-      { clave: "CMO-1020", nombre: "Estructura y Sist. Anatómicos", creditos: 4, prerrequisitos: ["BIO-0170", "BIO-0180"] },
-      { clave: "CMO-1030", nombre: "Lab Estruct y Sist. Anatómicos", creditos: 1, prerrequisitos: ["BIO-0170", "BIO-0180"] },
-      { clave: "FIL-1270", nombre: "Fund. Ética General", creditos: 3, prerrequisitos: ["FIL-0110"] },
-      { clave: "HIS-1700", nombre: "Antropología Aplicada", creditos: 3, prerrequisitos: ["SOC-0100"] },
-      { clave: "HIS-2370", nombre: "Historia de la Cultura Universal", creditos: 3, prerrequisitos: ["HIS-0110"] },
-      { clave: "IDI-1200", nombre: "Inglés Técnico en Salud I", creditos: 3, prerrequisitos: ["LET-0120"] },
-      { clave: "INF-1030", nombre: "Introducción a la Informática", creditos: 3, prerrequisitos: ["MAT-0140"] },
-      { clave: "SAP-2090", nombre: "Bases Análisis Biométrico", creditos: 3, prerrequisitos: ["MAT-0140"] }
-    ],
-    "4. Cuarto Semestre Pre-Médica": [
-      { clave: "CFI-0160", nombre: "Fisiología Celular", creditos: 4, prerrequisitos: ["BIO-0170", "BIO-0180", "QUI-1220", "CFI-3150", "CFI-3160"] },
-      { clave: "CMO-0300", nombre: "Bases Histológicas del Organismo", creditos: 4, prerrequisitos: ["BIO-0170", "BIO-0180"] },
-      { clave: "CMO-0340", nombre: "Lab Bases Histológicas", creditos: 1, prerrequisitos: ["BIO-0170", "BIO-0180"] },
-      { clave: "IDI-1270", nombre: "Inglés Técnico en Salud II", creditos: 3, prerrequisitos: ["IDI-1200"] },
-      { clave: "MED-0330", nombre: "Salud y Conducta Humana", creditos: 3, prerrequisitos: ["SOC-0100"] },
-      { clave: "MED-0340", nombre: "Lab Salud y Conducta Humana", creditos: 1, prerrequisitos: ["SOC-0100"] },
-      { clave: "SAP-1050", nombre: "Intro a la Metod. de Investigación", creditos: 3, prerrequisitos: ["SOC-0100"] },
-      { clave: "SAP-1150", nombre: "Soporte Vital Básico", creditos: 2, prerrequisitos: ["CMO-1020", "CMO-1030"] },
-      { clave: "SAP-2080", nombre: "Tecnología de la Información en Salud", creditos: 3, prerrequisitos: ["INF-1030"] }
+    const materias = {
+  "1. Primer Semestre Pre-Médica": [
+    { clave: "BIO-0170", nombre: "Biología Básica", cr: 2 },
+    { clave: "BIO-0180", nombre: "Laboratorio de Biología Básica", cr: 1 },
+    { clave: "DOP-1000", nombre: "Orientación Institucional", cr: 1 },
+    { clave: "FIL-0110", nombre: "Introducción a la Filosofía", cr: 3 },
+    { clave: "LET-0110", nombre: "Lengua Española Básica I", cr: 3 },
+    { clave: "MAT-0140", nombre: "Matemática Básica", cr: 4 },
+    { clave: "QUI-0140", nombre: "Química Básica", cr: 3 },
+    { clave: "SOC-0100", nombre: "Introducción a las Ciencias Sociales", cr: 3 },
+    { clave: "FIS-0140", nombre: "Física Básica", cr: 4 }
+  ],
+  "2. Segundo Semestre Pre-Médica": [
+    { clave: "CFI-3150", nombre: "Biofísica", cr: 2, prerrequisitos: ["FIS-0140", "BIO-0170", "BIO-0180"] },
+    { clave: "CFI-3160", nombre: "Laboratorio Biofísica", cr: 1, prerrequisitos: ["FIS-0140", "BIO-0170", "BIO-0180"] },
+    { clave: "EFS-0120", nombre: "Educación Física", cr: 2 },
+    { clave: "HIS-0110", nombre: "Fundamentos de Historia Social Dominicana", cr: 3 },
+    { clave: "LET-0120", nombre: "Lengua Española Básica II", cr: 3, prerrequisitos: ["LET-0110"] },
+    { clave: "OSI-1510", nombre: "Fundamentos de Desarrollo Cognitivo", cr: 3 },
+    { clave: "QUI-1220", nombre: "Química Orgánica", cr: 3, prerrequisitos: ["QUI-0140"] },
+    { clave: "SOC-1470", nombre: "Vida en Comunidad", cr: 3, prerrequisitos: ["SOC-0100"] }
+  ],
+  "3. Tercer Semestre Pre-Médica": [
+    { clave: "CMO-1020", nombre: "Estructuras y Sistemas Anatómicos", cr: 3, prerrequisitos: ["BIO-0170", "BIO-0180"] },
+    { clave: "CMO-1030", nombre: "Laboratorio Estructuras y Sistemas Anatómicos", cr: 1, prerrequisitos: ["BIO-0170", "BIO-0180"] },
+    { clave: "SAP-2090", nombre: "Bases para el Análisis Biométrico", cr: 4, prerrequisitos: ["MAT-0140"] },
+    { clave: "INF-1030", nombre: "Introducción a la Informática", cr: 4, prerrequisitos: ["MAT-0140"] },
+    { clave: "IDI-1200", nombre: "Inglés Técnico en Salud I", cr: 4, prerrequisitos: ["LET-0120"] },
+    { clave: "HIS-2370", nombre: "Historia de la Cultura Universal", cr: 2, prerrequisitos: ["HIS-0110"] },
+    { clave: "HIS-1700", nombre: "Antropología Aplicada en Medicina", cr: 3, prerrequisitos: ["SOC-0100"] },
+    { clave: "FIL-1270", nombre: "Fundamentos de Ética General", cr: 3, prerrequisitos: ["FIL-0110"] }
+  ],
+  "4. Cuarto Semestre Pre-Médica": [
+    { clave: "CMO-0300", nombre: "Bases Histológicas del Organismo", cr: 3, prerrequisitos: ["BIO-0170", "BIO-0180"] },
+    { clave: "CMO-0340", nombre: "Laboratorio Bases Histológicas del Organismo", cr: 1, prerrequisitos: ["BIO-0170", "BIO-0180"] },
+    { clave: "CFI-0160", nombre: "Fisiología Celular", cr: 3, prerrequisitos: ["QUI-1220", "BIO-0170", "BIO-0180", "CFI-3150", "CFI-3160"] },
+    { clave: "SAP-2080", nombre: "Tecnología Informática e Investigación en Salud", cr: 3, prerrequisitos: ["INF-1030"] },
+    { clave: "IDI-1270", nombre: "Inglés Técnico en Salud II", cr: 4, prerrequisitos: ["IDI-1200"] },
+    { clave: "SAP-1150", nombre: "Fundamentos de Soporte Vital Básico", cr: 3, prerrequisitos: ["CMO-1020", "CMO-1030"] },
+    { clave: "SAP-1050", nombre: "Introducción a la Metodología de Investigación en Salud", cr: 3, prerrequisitos: ["FIL-0110", "SOC-0100", "MAT-0140"] },
+    { clave: "MED-0340", nombre: "Laboratorio Salud y Conducta Humana", cr: 1, prerrequisitos: ["SOC-0100"] },
+    { clave: "MED-0330", nombre: "Salud y Conducta Humana", cr: 2, prerrequisitos: ["SOC-0100"] }
     ],
     "5. Quinto Semestre Ciclo Básico Médico": [
       { clave: "CFI-1230", nombre: "Genética Médica", creditos: 4, prerrequisitos: ["CFI-0160", "QUI-1220"] },
@@ -306,8 +306,8 @@
           li.classList.add('pendiente');
         }
 
-        li.textContent = `${materia.clave} - ${materia.nombre} (${materia.creditos} créditos)`;
-
+        li.textContent = `${materia.clave} - ${materia.nombre} (${materia.cr} CR)`;
+       
         if (!estaBloqueada) {
           li.addEventListener('click', () => {
             if (materiasCompletadas.has(materia.clave)) {
