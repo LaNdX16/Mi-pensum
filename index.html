@@ -311,13 +311,15 @@
   }
 
   // Actualizar contador de créditos completados
-  function actualizarContador() {
-    let totalCreditos = 0;
-    materiasCompletadas.forEach(clave => {
-      for (const sem in materias) {
-        const mat = materias[sem].find(m => m.clave === clave);
-        if (mat) totalCreditos += mat.creditos;
-      }
+ function actualizarCreditos() {
+  let total = 0;
+  document.querySelectorAll(".materia.completada").forEach((el) => {
+    const creditos = parseInt(el.dataset.creditos) || 0;
+    total += creditos;
+  });
+  document.getElementById("contadorCreditos").textContent =
+    `Créditos completados: ${total}`;
+}
     });
     contadorCreditos.textContent = `Créditos completados: ${totalCreditos}`;
   }
