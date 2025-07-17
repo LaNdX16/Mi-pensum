@@ -285,100 +285,99 @@
 ]
   };
 
-  const pensumDiv = document.getElementById('pensum');
-  const contadorCreditos = document.getElementById('contadorCreditos');
+const pensumDiv = document.getElementById('pensum');
+const contadorCreditos = document.getElementById('contadorCreditos');
 
-  // Función para saber si una materia tiene prerrequisitos no cumplidos
-  function bloqueada(materia, completadas) {
-    if (!materia.prerrequisitos) return false;
-    return materia.prerrequisitos.some(pre => !completadas.has(pre));
+function bloqueada(materia, completadas) {
+  if (!materia.prerrequisitos) return false;
+  return materia.prerrequisitos.some(pre => !completadas.has(pre));
+}
+
+let materiasCompletadas = new Set();
+
+function cargarCompletadas() {
+  const data = localStorage.getItem('medicina_materias_completadas');
+  if (data) {
+    materiasCompletadas = new Set(JSON.parse(data));
   }
+}
 
-  // Variables para manejar materias completadas
-  let materiasCompletadas = new Set();
+function guardarCompletadas() {
+  localStorage.setItem('medicina_materias_completadas', JSON.stringify([...materiasCompletadas]));
+}
 
-  // Cargar materias completadas del localStorage
-  function cargarCompletadas() {
-    const data = localStorage.getItem('medicina_materias_completadas');
-    if (data) {
-      materiasCompletadas = new Set(JSON.parse(data));
-    }
-  }
-
-  // Guardar materias completadas en localStorage
-  function guardarCompletadas() {
-    localStorage.setItem('medicina_materias_completadas', JSON.stringify([...materiasCompletadas]));
-  }
-
-  // Actualizar contador de créditos completados
-  actualizarCreditos();
+function actualizarContador() {
   let total = 0;
-  document.querySelectorAll(".materia.completada").forEach((el) => {
-    const creditos = parseInt(el.dataset.creditos) || 0;
-    total += creditos;
-  });
-  document.getElementById("contadorCreditos").textContent =
-    `Créditos completados: ${total}`;
- }
-    
-  // Crear visual del pensum
-  function renderizarPensum() {
-    pensumDiv.innerHTML = '';
-
-    for (const semestre in materias) {
-      const divSemestre = document.createElement('div');
-      divSemestre.classList.add('semestre');
-
-      const h2 = document.createElement('h2');
-      h2.textContent = semestre;
-      divSemestre.appendChild(h2);
-
-      const ul = document.createElement('ul');
-      ul.style.paddingLeft = '0';
-      ul.style.margin = '0';
-
-      materias[semestre].forEach(materia => {
-        const li = document.createElement('li');
-        li.classList.add('materia');
-
-        const estaBloqueada = bloqueada(materia, materiasCompletadas);
-        if (estaBloqueada) {
-          li.classList.add('bloqueada');
-        } else if (materiasCompletadas.has(materia.clave)) {
-          li.classList.add('completada');
-        } else {
-          li.classList.add('pendiente');
-        }
-
-        li.textContent = `${materia.clave} - ${materia.nombre} (${materia.cr} CR)`;
-       
-        if (!estaBloqueada) {
-          li.addEventListener('click', () => {
-            if (materiasCompletadas.has(materia.clave)) {
-              materiasCompletadas.delete(materia.clave);
-              li.classList.remove('completada');
-              li.classList.add('pendiente');
-            } else {
-              materiasCompletadas.add(materia.clave);
-              li.classList.remove('pendiente');
-              li.classList.add('completada');
-            }
-            guardarCompletadas();
-            actualizarContador();
-          });
-        }
-
-        ul.appendChild(li);
-      });
-
-      divSemestre.appendChild(ul);
-      pensumDiv.appendChild(divSemestre);
-    }
+  // Recorremos todas las materias para sumar créditos completados
+  for (const semestre in materias) {
+    materias[semestre].forEach(materia => {
+      if (materiasCompletadas.has(materia.clave)) {
+        total += materia.cr;
+      }
+    });
   }
+  contadorCreditos.textContent = `Créditos completados: ${total}`;
+}
 
-  cargarCompletadas();
-  renderizarPensum();
-  actualizarContador();
+function renderizarPensum() {
+  pensumDiv.innerHTML = '';
+
+  for (const semestre in materias) {
+    const divSemestre = document.createElement('div');
+    divSemestre.classList.add('semestre');
+
+    const h2 = document.createElement('h2');
+    h2.textContent = semestre;
+    divSemestre.appendChild(h2);
+
+    const ul = document.createElement('ul');
+    ul.style.paddingLeft = '0';
+    ul.style.margin = '0';
+
+    materias[semestre].forEach(materia => {
+      const li = document.createElement('li');
+      li.classList.add('materia');
+
+      const estaBloqueada = bloqueada(materia, materiasCompletadas);
+
+      if (estaBloqueada) {
+        li.classList.add('bloqueada');
+      } else if (materiasCompletadas.has(materia.clave)) {
+        li.classList.add('completada');
+      } else {
+        li.classList.add('pendiente');
+      }
+
+      li.textContent = `${materia.clave} - ${materia.nombre} (${materia.cr} CR)`;
+
+      if (!estaBloqueada) {
+        li.addEventListener('click', () => {
+          if (materiasCompletadas.has(materia.clave)) {
+            materiasCompletadas.delete(materia.clave);
+            li.classList.remove('completada');
+            li.classList.add('pendiente');
+          } else {
+            materiasCompletadas.add(materia.clave);
+            li.classList.remove('pendiente');
+            li.classList.add('completada');
+          }
+          guardarCompletadas();
+          renderizarPensum();  // para que se actualicen bloqueos si cambia algo
+          actualizarContador();
+        });
+      }
+
+      ul.appendChild(li);
+    });
+
+    divSemestre.appendChild(ul);
+    pensumDiv.appendChild(divSemestre);
+  }
+}
+
+cargarCompletadas();
+renderizarPensum();
+actualizarContador();
 </script>
 
 </body>
