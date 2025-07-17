@@ -252,14 +252,35 @@
   { clave: "SAP-3050", nombre: "Medicina Forense", cr: 2 },
   { clave: "SAP-3080", nombre: "Laboratorio Medicina Forense", cr: 1 }
 ],
-    "10. Décimo Semestre Internado Rotatorio": [
-      { clave: "MED-3000", nombre: "Internado en Urgencias", creditos: 14 },
-      { clave: "MED-3100", nombre: "Internado en Medicina Familiar y Comunitaria", creditos: 14 },
-      { clave: "MED-3200", nombre: "Internado en Salud Pública", creditos: 14 },
-      { clave: "MED-3300", nombre: "Internado en Psiquiatría", creditos: 14 }
-    ],
-    "11. Undécimo Semestre Tesis": [
-      { clave: "TES-4000", nombre: "Tesis de Grado", creditos: 14 }
+   "7. Séptimo Semestre Pre-Internado": [
+  { clave: "MED-4250", nombre: "Laboratorio Otorrinolaringología", cr: 1, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220"] },
+  { clave: "MED-3290", nombre: "Otorrinolaringología", cr: 2, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220"] },
+  { clave: "MED-3280", nombre: "Anestesiología", cr: 3, prerrequisitos: ["MED-6170", "MED-6180"] },
+  { clave: "MED-1240", nombre: "Neurocirugía", cr: 2, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220"] },
+  { clave: "FAR-3510", nombre: "Nutrición (Medicina)", cr: 3, prerrequisitos: ["CFI-2180", "MED-6190", "MED-7100"] },
+  { clave: "MED-ZZX0", nombre: "Asignatura Optativa", cr: 3 },
+  { clave: "MED-5120", nombre: "Oncología", cr: 2, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220"] },
+  { clave: "MED-4290", nombre: "Laboratorio Urología", cr: 1, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220", "MED-2140"] },
+  { clave: "MED-4280", nombre: "Urología", cr: 2, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220", "MED-2140"] },
+  { clave: "MED-4270", nombre: "Laboratorio Traumatología y Ortopedia", cr: 1, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220"] },
+  { clave: "MED-4260", nombre: "Traumatología y Ortopedia", cr: 3, prerrequisitos: ["BAN-3000", "MED-4210", "MED-4220"] }
+],
+"8. Octavo Semestre Pre-Internado": [
+  { clave: "MED-3410", nombre: "Pediatría y Neonatología", cr: 6, prerrequisitos: ["CFI-2400", "FAR-3510"] },
+  { clave: "MED-3500", nombre: "Gíneco-Obstetricia", cr: 6, prerrequisitos: ["MED-3280", "CFI-2180", "MED-5120"] },
+  { clave: "MED-5200", nombre: "Emergencias Médicas", cr: 6, prerrequisitos: ["BAN-3000", "MED-3280", "MED-4210", "MED-4220"] },
+  { clave: "SAP-1060", nombre: "Métodos de la Investigación en Salud", cr: 3, prerrequisitos: ["SAP-2200", "SAP-3050"] }
+],
+"Internado Rotatorio": [
+  { clave: "MED-3440", nombre: "Clínica Pediátrica", cr: 8 },
+  { clave: "MED-3370", nombre: "Clínica Médico Psiquiátrica", cr: 3 },
+  { clave: "MED-3520", nombre: "Clínica Gíneco-Obstétrica", cr: 8 },
+  { clave: "MED-5240", nombre: "Medicina Quirúrgica y Traumatología", cr: 8 },
+  { clave: "MED-7110", nombre: "Medicina Interna", cr: 8 },
+  { clave: "MED-5230", nombre: "Salud Pública", cr: 9 }
+],
+"Tesis de Grado": [
+  { clave: "MED-7990", nombre: "Tesis de Grado", cr: 8 }
     ]
   };
 
